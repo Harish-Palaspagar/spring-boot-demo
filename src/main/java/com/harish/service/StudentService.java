@@ -8,28 +8,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import java.time.LocalDate;
 import java.util.List;
 
-@Service
-public class StudentService {
+public interface StudentService {
 
-    public List<Student> findAllStudents()
-    {
-        return List.of(
-                new Student("Harish",
-                        "Palaspagar",
-                        LocalDate.now(),
-                        "harish@gmail.com",
-                        18)
+     List<Student> findAllStudents();
 
-                ,
+     Student saveStudent(Student student);
 
-                new Student("Rahul",
-                        "Kumar",
-                        LocalDate.now(),
-                        "rahul@gmail.com",
-                        20)
-        );
+     Student findByEmail(String email);
 
-    }
+     void delete(String email);
 
+     Student updateStudent(Student student);
 
 }
