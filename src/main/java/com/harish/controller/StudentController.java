@@ -3,16 +3,22 @@ package com.harish.controller;
 import com.harish.entity.Student;
 import com.harish.service.StudentService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/students")
-@RequiredArgsConstructor
 public class StudentController {
 
-    private final StudentService studentService;
+   private final StudentService studentService;
+
+   // you can add class name as a qualifier too
+
+    public StudentController(@Qualifier("db") StudentService studentService) {
+        this.studentService = studentService;
+    }
 
     @PostMapping
     public Student save(@RequestBody Student student)
